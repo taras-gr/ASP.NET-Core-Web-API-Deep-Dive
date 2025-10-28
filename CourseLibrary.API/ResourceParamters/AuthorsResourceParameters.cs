@@ -13,4 +13,5 @@ public class AuthorsResourceParameters
         set => _pageSize = value > maxPageSize ? maxPageSize : value;
     }
     public string OrderBy { get; set; } = "Name";
+    public string? Fields { get; set; }
 }
