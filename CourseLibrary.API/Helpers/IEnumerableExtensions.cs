@@ -18,7 +18,7 @@ public static class IEnumerableExtensions
         if (string.IsNullOrWhiteSpace(fields))
         {
             var propertyInfos = typeof(TSource)
-                .GetProperties(BindingFlags.IgnoreCase | BindingFlags.Instance);
+                .GetProperties(BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
 
             propertyInfoList.AddRange(propertyInfos);
         }
