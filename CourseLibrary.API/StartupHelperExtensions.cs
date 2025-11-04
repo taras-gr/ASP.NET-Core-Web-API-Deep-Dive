@@ -85,6 +85,17 @@ internal static class StartupHelperExtensions
 
         builder.Services.AddResponseCaching();
 
+        builder.Services.AddHttpCacheHeaders((expirationModeOptions) =>
+        {
+            expirationModeOptions.MaxAge = 60;
+            expirationModeOptions.CacheLocation =
+                Marvin.Cache.Headers.CacheLocation.Private;
+        },
+        (validationModelOptions) =>
+        {
+            validationModelOptions.MustRevalidate = true;
+        });
+
         return builder.Build();
     }
 
@@ -107,7 +118,9 @@ internal static class StartupHelperExtensions
             });
         }
 
-        app.UseResponseCaching();
+        //app.UseResponseCaching();
+
+        app.UseHttpCacheHeaders();
  
         app.UseAuthorization();
 
